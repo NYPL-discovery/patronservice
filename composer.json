@@ -1,0 +1,14 @@
+{
+  "name": "nypl-services",
+  "description": "NYPL Services Package",
+  "require": {
+    "nypl/microservice-starter": "~0.1"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "NYPL\\Services\\": [ "src/" ]
+    }
+  }
+}
