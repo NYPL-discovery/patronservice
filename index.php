@@ -12,7 +12,7 @@ Config::initialize(__DIR__ . '/config');
 
 $service = new Service();
 
-$service->get("/swagger/general", function (Request $request, Response $response) {
+$service->get("/swagger", function (Request $request, Response $response) {
     return SwaggerGenerator::generate(
         [__DIR__ . "/src"],
         $response
