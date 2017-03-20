@@ -18,7 +18,7 @@ class ValidateAddress extends BaseCardCreator
     public $valid = false;
 
     /**
-     * @SWG\Property(example="available-username")
+     * @SWG\Property(example="valid-address")
      * @var string
      */
     public $type = '';
@@ -30,7 +30,7 @@ class ValidateAddress extends BaseCardCreator
     public $card_type = '';
 
     /**
-     * @SWG\Property(example="This username is available.")
+     * @SWG\Property(example="This valid address will result in a standard library card.")
      * @var string
      */
     public $message = '';

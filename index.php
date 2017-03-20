@@ -12,7 +12,7 @@ Config::initialize(__DIR__ . '/config');
 
 $service = new Service();
 
-$service->get("/swagger", function (Request $request, Response $response) {
+$service->get("/api/v0.1/patrons/swagger", function (Request $request, Response $response) {
     return SwaggerGenerator::generate(
         [__DIR__ . "/src"],
         $response
@@ -34,13 +34,13 @@ $service->get("/api/v0.1/patrons/{id}", function (Request $request, Response $re
     return $controller->getPatron($parameters["id"]);
 });
 
-$service->post("/api/v0.1/patrons/validate/username", function (Request $request, Response $response, $parameters) {
-    $controller = new Controller\PatronController($request, $response);
+$service->post("/api/v0.1/validations/username", function (Request $request, Response $response, $parameters) {
+    $controller = new Controller\ValidationController($request, $response);
     return $controller->validateUsername();
 });
 
-$service->post("/api/v0.1/patrons/validate/address", function (Request $request, Response $response, $parameters) {
-    $controller = new Controller\PatronController($request, $response);
+$service->post("/api/v0.1/validations/address", function (Request $request, Response $response, $parameters) {
+    $controller = new Controller\ValidationController($request, $response);
     return $controller->validateAddress();
 });
 

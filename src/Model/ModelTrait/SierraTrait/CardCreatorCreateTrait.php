@@ -29,6 +29,10 @@ trait CardCreatorCreateTrait
      */
     public function create($ignoreNoRecord = false)
     {
+        if (!$this->getRequest()) {
+            throw new APIException('No model for creation specified');
+        }
+
         $response = $this->getResponse($ignoreNoRecord);
 
         $data = json_decode($response, true);

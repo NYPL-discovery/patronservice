@@ -2,50 +2,65 @@
 namespace NYPL\Services\Controller;
 
 use NYPL\Services\Model\DataModel\BaseCardCreator\CreatePatron;
-use NYPL\Services\Model\DataModel\BaseCardCreator\ValidateAddress;
-use NYPL\Services\Model\DataModel\BaseCardCreatorRequest\CreatePatronRequest;
-use NYPL\Services\Model\DataModel\BaseCardCreatorRequest\ValidateAddressRequest;
-use NYPL\Services\Model\DataModel\BaseCardCreatorRequest\ValidateUsernameRequest;
+use NYPL\Services\Model\DataModel\BaseCardCreatorRequest\SimplePatron;
 use NYPL\Services\Model\DataModel\PatronSet;
 use NYPL\Services\Model\DataModel\Query\PatronQuery;
 use NYPL\Services\Model\Response\SuccessResponse\PatronsResponse;
-use NYPL\Services\Model\Response\SuccessResponse\ValidateAddressResponse;
-use NYPL\Services\Model\Response\SuccessResponse\ValidateUsernameResponse;
 use NYPL\Starter\Controller;
 use NYPL\Starter\Filter;
 use NYPL\Starter\Filter\QueryFilter;
 use NYPL\Services\Model\DataModel\BasePatron\Patron;
 use NYPL\Services\Model\Response\SuccessResponse\PatronResponse;
-use NYPL\Services\Model\DataModel\BaseCardCreator\ValidateUsername;
 
 final class PatronController extends Controller
 {
     /**
-     * @param array $data
-     *
-     * @return ValidateUsername
+     * @SWG\Tag(
+     *   name="patrons",
+     *   description="Patrons API"
+     * )
      */
-    protected function getValidateUsername(array $data = [])
-    {
-        $model = new ValidateUsername();
-        $model->setRequest(new ValidateUsernameRequest($data));
-        $model->create();
-
-        return $model;
-    }
 
     /**
      * @param array $data
      *
-     * @return ValidateAddress
+     * @return CreatePatron
      */
-    protected function getValidateAddress(array $data = [])
+    protected function getCreatePatron(array $data = [])
     {
-        $model = new ValidateAddress();
-        $model->setRequest(new ValidateAddressRequest($data));
-        $model->create();
+        $createPatron = new CreatePatron();
 
-        return $model;
+        if (isset($data['simplePatron'])) {
+            $createPatron->setRequest(
+                new SimplePatron($data['simplePatron'])
+            );
+        }
+
+        $createPatron->create();
+
+        return $createPatron;
+    }
+
+    /**
+     * @param CreatePatron $createPatron
+     *
+     * @return Patron
+     */
+    protected function getAndCreatePatron(CreatePatron $createPatron)
+    {
+        $patrons = new PatronSet(new Patron(), true);
+        $patrons->addFilter(
+            new QueryFilter('barcode', $createPatron->getBarcode())
+        );
+        $patrons->read();
+
+        /**
+         * @var Patron $patron
+         */
+        $patron = current($patrons->getData());
+        $patron->create();
+
+        return $patron;
     }
 
     /**
@@ -56,12 +71,13 @@ final class PatronController extends Controller
      *     operationId="createPatron",
      *     consumes={"application/json"},
      *     produces={"application/json"},
+     *     description="See https://github.com/NYPL-Simplified/card-creator/wiki/API#post-v1create_patron for additional documentation.",
      *     @SWG\Parameter(
-     *         name="CreatePatronRequest",
+     *         name="NewPatron",
      *         in="body",
      *         description="",
      *         required=true,
-     *         @SWG\Schema(ref="#/definitions/CreatePatronRequest"),
+     *         @SWG\Schema(ref="#/definitions/NewPatron"),
      *     ),
      *     @SWG\Response(
      *         response=200,
@@ -87,23 +103,9 @@ final class PatronController extends Controller
      */
     public function createPatron()
     {
-        $createPatron = new CreatePatron();
-        $createPatron->setRequest(
-            new CreatePatronRequest($this->getRequest()->getParsedBody())
-        );
-        $createPatron->create();
+        $createPatron = $this->getCreatePatron($this->getRequest()->getParsedBody());
 
-        $patrons = new PatronSet(new Patron(), true);
-        $patrons->addFilter(
-            new QueryFilter('barcode', $createPatron->getBarcode())
-        );
-        $patrons->read();
-
-        /**
-         * @var Patron $patron
-         */
-        $patron = current($patrons->getData());
-        $patron->create();
+        $patron = $this->getAndCreatePatron($createPatron);
 
         return $this->getResponse()->withJson(
             new PatronResponse($patron)
@@ -227,98 +229,6 @@ final class PatronController extends Controller
             new Patron(),
             new PatronResponse(),
             new Filter(null, null, false, $id)
-        );
-    }
-
-    /**
-     * @SWG\Post(
-     *     path="/v0.1/patrons/validate/username",
-     *     summary="Create a Patron username validation request",
-     *     tags={"patrons"},
-     *     operationId="validateUsername",
-     *     consumes={"application/json"},
-     *     produces={"application/json"},
-     *     @SWG\Parameter(
-     *         name="ValidateUsernameRequest",
-     *         in="body",
-     *         description="",
-     *         required=true,
-     *         @SWG\Schema(ref="#/definitions/ValidateUsernameRequest"),
-     *     ),
-     *     @SWG\Response(
-     *         response=200,
-     *         description="Successful operation",
-     *         @SWG\Schema(ref="#/definitions/ValidateUsernameResponse")
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Not found",
-     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
-     *     ),
-     *     @SWG\Response(
-     *         response="500",
-     *         description="Generic server error",
-     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
-     *     ),
-     *     security={
-     *         {
-     *             "api_auth": {"openid offline_access api"}
-     *         }
-     *     }
-     * )
-     */
-    public function validateUsername()
-    {
-        $validateUsername = $this->getValidateUsername($this->getRequest()->getParsedBody());
-
-        return $this->getResponse()->withJson(
-            new ValidateUsernameResponse($validateUsername)
-        );
-    }
-
-    /**
-     * @SWG\Post(
-     *     path="/v0.1/patrons/validate/address",
-     *     summary="Create a Patron address validation request",
-     *     tags={"patrons"},
-     *     operationId="validateAddress",
-     *     consumes={"application/json"},
-     *     produces={"application/json"},
-     *     @SWG\Parameter(
-     *         name="ValidateAddressRequest",
-     *         in="body",
-     *         description="",
-     *         required=true,
-     *         @SWG\Schema(ref="#/definitions/ValidateAddressRequest"),
-     *     ),
-     *     @SWG\Response(
-     *         response=200,
-     *         description="Successful operation",
-     *         @SWG\Schema(ref="#/definitions/ValidateAddressResponse")
-     *     ),
-     *     @SWG\Response(
-     *         response="404",
-     *         description="Not found",
-     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
-     *     ),
-     *     @SWG\Response(
-     *         response="500",
-     *         description="Generic server error",
-     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
-     *     ),
-     *     security={
-     *         {
-     *             "api_auth": {"openid offline_access api"}
-     *         }
-     *     }
-     * )
-     */
-    public function validateAddress()
-    {
-        $validateAddress = $this->getValidateAddress($this->getRequest()->getParsedBody());
-
-        return $this->getResponse()->withJson(
-            new ValidateAddressResponse($validateAddress)
         );
     }
 }

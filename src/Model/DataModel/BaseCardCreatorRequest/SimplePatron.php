@@ -4,9 +4,9 @@ namespace NYPL\Services\Model\DataModel\BaseCardCreatorRequest;
 use NYPL\Services\Model\DataModel\BaseCardCreatorRequest;
 
 /**
- * @SWG\Definition(title="CreatePatronRequest", type="object")
+ * @SWG\Definition(title="SimplePatron", type="object")
  */
-class CreatePatronRequest extends BaseCardCreatorRequest
+class SimplePatron extends BaseCardCreatorRequest
 {
     /**
      * @SWG\Property(example="John Jacob Jingleheimer Schmidt")
