@@ -13,7 +13,7 @@ trait SierraReadTrait
     /**
      * @var string
      */
-    protected $body = '';
+    private $body = '';
 
     /**
      * @param bool $ignoreNoRecord
