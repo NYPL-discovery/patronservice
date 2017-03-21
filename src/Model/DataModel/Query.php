@@ -20,6 +20,11 @@ abstract class Query extends DataModel
     protected $ids = [];
 
     /**
+     * @var bool
+     */
+    protected $ignoreNoRecord = false;
+
+    /**
      * @param array $data
      * @param bool $validateData
      *
@@ -63,7 +68,7 @@ abstract class Query extends DataModel
     /**
      * @return array
      */
-    public function getIds(): array
+    public function getIds()
     {
         return $this->ids;
     }
@@ -74,5 +79,21 @@ abstract class Query extends DataModel
     public function setIds(array $ids)
     {
         $this->ids = $ids;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isIgnoreNoRecord()
+    {
+        return $this->ignoreNoRecord;
+    }
+
+    /**
+     * @param bool $ignoreNoRecord
+     */
+    public function setIgnoreNoRecord($ignoreNoRecord)
+    {
+        $this->ignoreNoRecord = (bool) $ignoreNoRecord;
     }
 }

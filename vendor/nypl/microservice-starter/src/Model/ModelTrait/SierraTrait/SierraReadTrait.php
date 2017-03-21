@@ -1,6 +1,7 @@
 <?php
 namespace NYPL\Starter\Model\ModelTrait\SierraTrait;
 
+use NYPL\Services\Model\DataModel\Query;
 use NYPL\Starter\APIException;
 use NYPL\Starter\Model;
 use NYPL\Starter\ModelSet;
@@ -35,6 +36,10 @@ trait SierraReadTrait
      */
     public function read($ignoreNoRecord = false)
     {
+        if ($this instanceof Query) {
+            $this->setIgnoreNoRecord($ignoreNoRecord);
+        }
+
         $response = $this->getSierraResponse($ignoreNoRecord);
 
         $data = json_decode($response, true);
