@@ -4,7 +4,7 @@ namespace NYPL\Services\Controller;
 use NYPL\Services\Model\DataModel\BaseCardCreator\CreatePatron;
 use NYPL\Services\Model\DataModel\BaseCardCreatorRequest\SimplePatron;
 use NYPL\Services\Model\DataModel\PatronSet;
-use NYPL\Services\Model\DataModel\Query\PatronQuery;
+use NYPL\Services\Model\DataModel\Query\PatronEmailQuery;
 use NYPL\Services\Model\Response\SuccessResponse\PatronsResponse;
 use NYPL\Starter\Controller;
 use NYPL\Starter\Filter;
@@ -17,7 +17,7 @@ final class PatronController extends Controller
     /**
      * @SWG\Tag(
      *   name="patrons",
-     *   description="Patrons API"
+     *   description="Patron API"
      * )
      */
 
@@ -166,14 +166,17 @@ final class PatronController extends Controller
     public function getPatrons()
     {
         if ($email = $this->getRequest()->getQueryParam('email')) {
-            $patronQuery = new PatronQuery();
+            $patronQuery = new PatronEmailQuery();
             $patronQuery->setEmail($email);
             $patronQuery->read();
 
             return $this->getDefaultReadResponse(
                 new PatronSet(new Patron(), true),
                 new PatronsResponse(),
-                new Filter\QueryFilter('id', current($patronQuery->getIds()))
+                new Filter\QueryFilter(
+                    'id',
+                    implode(',', $patronQuery->getIds())
+                )
             );
         }
 

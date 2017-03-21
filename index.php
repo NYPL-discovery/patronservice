@@ -44,4 +44,8 @@ $service->post("/api/v0.1/validations/address", function (Request $request, Resp
     return $controller->validateAddress();
 });
 
+$service->post("/api/v0.1/validations/email", function (Request $request, Response $response, $parameters) {
+    $controller = new Controller\ValidationController($request, $response);
+    return $controller->validateEmail();
+});
 $service->run();

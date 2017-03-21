@@ -2,6 +2,7 @@
 namespace NYPL\Services\Model\DataModel\BasePatron;
 
 use NYPL\Services\Model\DataModel\BasePatron;
+use NYPL\Starter\Filter;
 use NYPL\Starter\Model\ModelInterface\MessageInterface;
 use NYPL\Starter\Model\ModelInterface\ReadInterface;
 use NYPL\Starter\Model\ModelTrait\CreateTrait;
@@ -23,6 +24,14 @@ class Patron extends BasePatron implements ReadInterface, MessageInterface
      */
     public function getSierraPath($id = null)
     {
+        if ($this->getFilters()) {
+            $filter = current($this->getFilters());
+
+            if ($filter instanceof Filter) {
+                $id = $filter->getId();
+            }
+        }
+
         return "patrons/{$this->getSierraId($id)}?" . http_build_query(["fields" => self::FIELDS]);
     }
 

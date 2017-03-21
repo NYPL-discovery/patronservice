@@ -3,8 +3,10 @@ namespace NYPL\Services\Model\DataModel\Query;
 
 use NYPL\Services\Model\DataModel\Query;
 
-class PatronQuery extends Query
+class PatronEmailQuery extends Query
 {
+    const DEFAULT_LIMIT = 20;
+
     /**
      * @var string
      */
@@ -13,7 +15,7 @@ class PatronQuery extends Query
     /**
      * @return string
      */
-    public function getEmail(): string
+    public function getEmail()
     {
         return $this->email;
     }
@@ -21,7 +23,7 @@ class PatronQuery extends Query
     /**
      * @param string $email
      */
-    public function setEmail(string $email)
+    public function setEmail($email = '')
     {
         $this->email = $email;
     }
@@ -29,7 +31,7 @@ class PatronQuery extends Query
     /**
      * @return string
      */
-    public function getBody(): string
+    public function getBody()
     {
         return json_encode([
             'target' => [
@@ -58,7 +60,7 @@ class PatronQuery extends Query
     {
         $query = [
             'offset' => 0,
-            'limit' => 1
+            'limit' => self::DEFAULT_LIMIT
         ];
 
         return "patrons/query?" . http_build_query($query);

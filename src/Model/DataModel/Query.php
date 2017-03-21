@@ -12,7 +12,7 @@ abstract class Query extends DataModel
     /**
      * @return string
      */
-    abstract protected function getBody(): string;
+    abstract protected function getBody();
 
     /**
      * @var array
@@ -27,7 +27,7 @@ abstract class Query extends DataModel
      */
     public function translate(array $data = [], $validateData = false)
     {
-        if (!$data['entries']) {
+        if (!$data['entries'] && !$this->isIgnoreNoRecord()) {
             throw new APIException(
                 'No matching record found',
                 null,

@@ -65,6 +65,10 @@ class ComposerStaticInitae962f39e587aedf297d2aea31ee4650
         array (
             'FastRoute\\' => 10,
         ),
+        'E' => 
+        array (
+            'Egulias\\EmailValidator\\' => 23,
+        ),
         'D' => 
         array (
             'Dotenv\\' => 7,
@@ -152,6 +156,10 @@ class ComposerStaticInitae962f39e587aedf297d2aea31ee4650
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Egulias\\EmailValidator\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
         ),
         'Dotenv\\' => 
         array (
