@@ -43,21 +43,15 @@ trait CardCreatorTrait
                     'verify' => false,
                     'timeout' => self::$timeoutSeconds,
                     'auth' => [
-                        Config::get('CARD_CREATOR_USERNAME'),
-                        Config::get('CARD_CREATOR_PASSWORD')
+                        Config::get('CARD_CREATOR_USERNAME', null, true),
+                        Config::get('CARD_CREATOR_PASSWORD', null, true)
                     ],
                     'json' => $this->getRequest()
                 ]
             );
         } catch (ClientException $clientException) {
             if (!$ignoreNoRecord) {
-                throw new APIException(
-                    'Client error: ' . $clientException->getResponse()->getBody(),
-                    null,
-                    0,
-                    null,
-                    $clientException->getResponse()->getStatusCode()
-                );
+                throw $clientException;
             }
         }
 

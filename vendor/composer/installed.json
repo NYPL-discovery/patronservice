@@ -1308,52 +1308,6 @@
         ]
     },
     {
-        "name": "nypl/microservice-starter",
-        "version": "0.1.37",
-        "version_normalized": "0.1.37.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/NYPL/php-microservice-starter.git",
-            "reference": "f2fd8ef7220f9bf0864f203b28ddda694b6c1a9a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/NYPL/php-microservice-starter/zipball/f2fd8ef7220f9bf0864f203b28ddda694b6c1a9a",
-            "reference": "f2fd8ef7220f9bf0864f203b28ddda694b6c1a9a",
-            "shasum": ""
-        },
-        "require": {
-            "aws/aws-sdk-php": "3.9.4",
-            "danielstjules/stringy": "2.3.2",
-            "filp/whoops": "2.1.3",
-            "guzzlehttp/guzzle": "6.2.3",
-            "kwn/php-rdkafka-stubs": "0.0.5",
-            "monolog/monolog": "1.21.0",
-            "slim/pdo": "1.9.9",
-            "slim/slim": "3.5.0",
-            "vlucas/phpdotenv": "2.4.0",
-            "zircote/swagger-php": "2.0.7"
-        },
-        "time": "2017-03-20 17:59:52",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "NYPL\\Starter\\": [
-                    "src/"
-                ]
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "authors": [
-            {
-                "name": "Kevin Friedman",
-                "email": "kevinfriedman@nypl.org"
-            }
-        ],
-        "description": "NYPL Microservice Starter"
-    },
-    {
         "name": "egulias/email-validator",
         "version": "2.1.2",
         "version_normalized": "2.1.2.0",
@@ -1411,5 +1365,51 @@
             "validation",
             "validator"
         ]
+    },
+    {
+        "name": "nypl/microservice-starter",
+        "version": "0.1.40",
+        "version_normalized": "0.1.40.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/NYPL/php-microservice-starter.git",
+            "reference": "d07d9e883697fdfb7a650d06540f075b8c49e52f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/NYPL/php-microservice-starter/zipball/d07d9e883697fdfb7a650d06540f075b8c49e52f",
+            "reference": "d07d9e883697fdfb7a650d06540f075b8c49e52f",
+            "shasum": ""
+        },
+        "require": {
+            "aws/aws-sdk-php": "3.9.4",
+            "danielstjules/stringy": "2.3.2",
+            "filp/whoops": "2.1.3",
+            "guzzlehttp/guzzle": "6.2.3",
+            "kwn/php-rdkafka-stubs": "0.0.5",
+            "monolog/monolog": "1.21.0",
+            "slim/pdo": "1.9.9",
+            "slim/slim": "3.5.0",
+            "vlucas/phpdotenv": "2.4.0",
+            "zircote/swagger-php": "2.0.7"
+        },
+        "time": "2017-03-24 22:00:33",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "NYPL\\Starter\\": [
+                    "src/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Kevin Friedman",
+                "email": "kevinfriedman@nypl.org"
+            }
+        ],
+        "description": "NYPL Microservice Starter"
     }
 ]

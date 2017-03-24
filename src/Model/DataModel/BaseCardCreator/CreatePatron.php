@@ -3,9 +3,6 @@ namespace NYPL\Services\Model\DataModel\BaseCardCreator;
 
 use NYPL\Services\Model\DataModel\BaseCardCreator;
 
-/**
- * @SWG\Definition(title="ValidateUsername", type="object")
- */
 class CreatePatron extends BaseCardCreator
 {
     /**

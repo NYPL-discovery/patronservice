@@ -1,11 +1,14 @@
 <?php
 namespace NYPL\Services\Controller;
 
+use GuzzleHttp\Exception\ClientException;
 use NYPL\Services\Model\DataModel\BaseCardCreator\CreatePatron;
 use NYPL\Services\Model\DataModel\BaseCardCreatorRequest\SimplePatron;
 use NYPL\Services\Model\DataModel\PatronSet;
 use NYPL\Services\Model\DataModel\Query\PatronEmailQuery;
+use NYPL\Services\Model\Response\ErrorResponse\CreatePatronErrorResponse;
 use NYPL\Services\Model\Response\SuccessResponse\PatronsResponse;
+use NYPL\Starter\APIException;
 use NYPL\Starter\Controller;
 use NYPL\Starter\Filter;
 use NYPL\Starter\Filter\QueryFilter;
@@ -25,6 +28,7 @@ final class PatronController extends Controller
      * @param array $data
      *
      * @return CreatePatron
+     * @throws APIException
      */
     protected function getCreatePatron(array $data = [])
     {
@@ -36,7 +40,37 @@ final class PatronController extends Controller
             );
         }
 
-        $createPatron->create();
+
+        try {
+            $createPatron->create();
+        } catch (ClientException $exception) {
+            $errorResponse = new CreatePatronErrorResponse();
+
+            $responseBody = json_decode($exception->getResponse()->getBody(), true);
+
+            if (isset($responseBody['detail'], $responseBody['debug_message'], $responseBody['title'])) {
+                $errorResponse->setDebugTitle($responseBody['title']);
+                $errorResponse->setDebugMessage($responseBody['debug_message']);
+
+                throw new APIException(
+                    $responseBody['detail'],
+                    null,
+                    0,
+                    null,
+                    $exception->getResponse()->getStatusCode(),
+                    $errorResponse
+                );
+            }
+
+            throw new APIException(
+                $exception->getMessage(),
+                null,
+                0,
+                null,
+                $exception->getResponse()->getStatusCode(),
+                $errorResponse
+            );
+        }
 
         return $createPatron;
     }
@@ -87,7 +121,7 @@ final class PatronController extends Controller
      *     @SWG\Response(
      *         response="400",
      *         description="Bad request",
-     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
+     *         @SWG\Schema(ref="#/definitions/CreatePatronErrorResponse")
      *     ),
      *     @SWG\Response(
      *         response="500",
