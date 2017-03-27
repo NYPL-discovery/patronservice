@@ -152,6 +152,7 @@ final class ValidationController extends Controller
         }
 
         $patronQuery = new PatronEmailQuery();
+        $patronQuery->setIgnoreNoRecord(true);
         $patronQuery->setEmail($data['email']);
         $patronQuery->read(true);
 
