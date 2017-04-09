@@ -41,6 +41,12 @@ class ValidateAddress extends BaseCardCreator
      */
     public $address;
 
+    /**
+     * @SWG\Property
+     * @var ValidateAddressFields[]
+     */
+    public $addresses = [];
+
     public function getCardCreatorPath()
     {
         return 'validate/address';
@@ -141,4 +147,31 @@ class ValidateAddress extends BaseCardCreator
             return new ValidateAddressFields($data, true);
         }
     }
+
+    /**
+     * @return array
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param array $addresses
+     */
+    public function setAddresses(array $addresses = [])
+    {
+        $this->addresses = $addresses;
+    }
+
+    /**
+     * @param array|string $data
+     *
+     * @return ValidateAddressFields[]
+     */
+    public function translateAddresses($data)
+    {
+        return $this->translateArray(array_column($data, 'address'), new ValidateAddressFields(), true);
+    }
+
 }
