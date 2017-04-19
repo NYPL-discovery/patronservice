@@ -97,54 +97,54 @@ final class PatronController extends Controller
         return $patron;
     }
 
-    /**
-     * @SWG\Post(
-     *     path="/v0.1/patrons",
-     *     summary="Create a Patron",
-     *     tags={"patrons"},
-     *     operationId="createPatron",
-     *     consumes={"application/json"},
-     *     produces={"application/json"},
-     *     description="See https://github.com/NYPL-Simplified/card-creator/wiki/API#post-v1create_patron for additional documentation.",
-     *     @SWG\Parameter(
-     *         name="NewPatron",
-     *         in="body",
-     *         description="",
-     *         required=true,
-     *         @SWG\Schema(ref="#/definitions/NewPatron"),
-     *     ),
-     *     @SWG\Response(
-     *         response=200,
-     *         description="Successful operation",
-     *         @SWG\Schema(ref="#/definitions/PatronResponse")
-     *     ),
-     *     @SWG\Response(
-     *         response="400",
-     *         description="Bad request",
-     *         @SWG\Schema(ref="#/definitions/CreatePatronErrorResponse")
-     *     ),
-     *     @SWG\Response(
-     *         response="500",
-     *         description="Generic server error",
-     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
-     *     ),
-     *     security={
-     *         {
-     *             "api_auth": {"openid offline_access api"}
-     *         }
-     *     }
-     * )
-     */
-    public function createPatron()
-    {
-        $createPatron = $this->getCreatePatron($this->getRequest()->getParsedBody());
-
-        $patron = $this->getAndCreatePatron($createPatron);
-
-        return $this->getResponse()->withJson(
-            new PatronResponse($patron)
-        );
-    }
+//    /**
+//     * @SWG\Post(
+//     *     path="/v0.1/patrons",
+//     *     summary="Create a Patron",
+//     *     tags={"patrons"},
+//     *     operationId="createPatron",
+//     *     consumes={"application/json"},
+//     *     produces={"application/json"},
+//     *     description="See https://github.com/NYPL-Simplified/card-creator/wiki/API#post-v1create_patron for additional documentation.",
+//     *     @SWG\Parameter(
+//     *         name="NewPatron",
+//     *         in="body",
+//     *         description="",
+//     *         required=true,
+//     *         @SWG\Schema(ref="#/definitions/NewPatron"),
+//     *     ),
+//     *     @SWG\Response(
+//     *         response=200,
+//     *         description="Successful operation",
+//     *         @SWG\Schema(ref="#/definitions/PatronResponse")
+//     *     ),
+//     *     @SWG\Response(
+//     *         response="400",
+//     *         description="Bad request",
+//     *         @SWG\Schema(ref="#/definitions/CreatePatronErrorResponse")
+//     *     ),
+//     *     @SWG\Response(
+//     *         response="500",
+//     *         description="Generic server error",
+//     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
+//     *     ),
+//     *     security={
+//     *         {
+//     *             "api_auth": {"openid offline_access api"}
+//     *         }
+//     *     }
+//     * )
+//     */
+//    public function createPatron()
+//    {
+//        $createPatron = $this->getCreatePatron($this->getRequest()->getParsedBody());
+//
+//        $patron = $this->getAndCreatePatron($createPatron);
+//
+//        return $this->getResponse()->withJson(
+//            new PatronResponse($patron)
+//        );
+//    }
 
     /**
      * @SWG\Get(
