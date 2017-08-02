@@ -21,6 +21,8 @@ abstract class Controller
 
     const JSON_CONTENT_TYPE = 'application/json';
 
+    const IDENTITY_HEADER = 'X-NYPL-Identity';
+
     /**
      * @var Request
      */
@@ -180,9 +182,9 @@ abstract class Controller
      */
     public function initializeIdentityHeader()
     {
-        if ($this->getRequest()->hasHeader(Config::get('IDENTITY_HEADER'))) {
+        if ($this->getRequest()->hasHeader(self::IDENTITY_HEADER)) {
             $this->setIdentityHeader(new IdentityHeader(
-                $this->getRequest()->getHeaderLine(Config::get('IDENTITY_HEADER'))
+                $this->getRequest()->getHeaderLine(self::IDENTITY_HEADER)
             ));
 
             return true;
@@ -313,9 +315,8 @@ abstract class Controller
      * @param string $patronId
      *
      * @return bool
-     * @throws APIException
      */
-    public function checkAccess($patronId = '')
+    public function isAllowed($patronId = '')
     {
         if (!$this->getIdentityHeader()->isExists()) {
             return true;
@@ -325,6 +326,23 @@ abstract class Controller
             return true;
         }
 
-        throw new APIException('Insufficient access for endpoint', null, null, null, 403);
+        return false;
+    }
+
+
+    /**
+     * @param string $message
+     *
+     * @throws APIException
+     */
+    public function denyAccess($message = '')
+    {
+        throw new APIException(
+            'Insufficient access for endpoint: ' . $message,
+            null,
+            null,
+            null,
+            403
+        );
     }
 }

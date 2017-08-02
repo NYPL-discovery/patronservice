@@ -1,0 +1,18 @@
+SIERRA_OAUTH_TOKEN_URI="https://nypl-sierra-test.iii.com/iii/sierra-api/v3/token"
+SIERRA_BASE_API_URL="https://nypl-sierra-test.iii.com/iii/sierra-api/v3"
+
+CACHE_HOST="service-job.rtovuw.0001.use1.cache.amazonaws.com"
+CACHE_PORT="6379"
+
+CARD_CREATOR_BASE_API_URL="http://qa.patrons.librarysimplified.org/v1"
+
+# ***************************************************
+# The parameters below should be encrypted using KMS
+# ***************************************************
+
+SLACK_TOKEN=
+SIERRA_OAUTH_CLIENT_ID=
+SIERRA_OAUTH_CLIENT_SECRET=
+
+CARD_CREATOR_USERNAME=
+CARD_CREATOR_PASSWORD=
