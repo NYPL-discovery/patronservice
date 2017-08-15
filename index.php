@@ -21,11 +21,6 @@ try {
         );
     });
 
-    $service->post("/api/v0.1/patrons", function (Request $request, Response $response, $parameters) {
-        $controller = new Controller\PatronController($request, $response);
-        return $controller->createPatron();
-    });
-
     $service->get("/api/v0.1/patrons", function (Request $request, Response $response) {
         $controller = new Controller\PatronController($request, $response);
         return $controller->getPatrons();
@@ -34,21 +29,6 @@ try {
     $service->get("/api/v0.1/patrons/{id}", function (Request $request, Response $response, $parameters) {
         $controller = new Controller\PatronController($request, $response);
         return $controller->getPatron($parameters["id"]);
-    });
-
-    $service->post("/api/v0.1/validations/username", function (Request $request, Response $response, $parameters) {
-        $controller = new Controller\ValidationController($request, $response);
-        return $controller->validateUsername();
-    });
-
-    $service->post("/api/v0.1/validations/address", function (Request $request, Response $response, $parameters) {
-        $controller = new Controller\ValidationController($request, $response);
-        return $controller->validateAddress();
-    });
-
-    $service->post("/api/v0.1/validations/email", function (Request $request, Response $response, $parameters) {
-        $controller = new Controller\ValidationController($request, $response);
-        return $controller->validateEmail();
     });
 
     $service->run();
