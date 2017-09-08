@@ -1,4 +1,4 @@
 TIME_ZONE=America/New_York
 SLACK_CHANNEL=service-logging
-SLACK_USERNAME=patronService
+SLACK_USERNAME=PatronService
 AWS_DEFAULT_REGION=us-east-1
