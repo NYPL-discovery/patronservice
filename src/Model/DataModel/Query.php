@@ -10,11 +10,6 @@ abstract class Query extends DataModel
     use SierraReadTrait;
 
     /**
-     * @return string
-     */
-    abstract protected function getBody();
-
-    /**
      * @var array
      */
     protected $ids = [];
