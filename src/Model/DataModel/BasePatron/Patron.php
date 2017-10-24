@@ -3,19 +3,17 @@ namespace NYPL\Services\Model\DataModel\BasePatron;
 
 use NYPL\Services\Model\DataModel\BasePatron;
 use NYPL\Starter\Filter;
-use NYPL\Starter\Model\ModelInterface\MessageInterface;
 use NYPL\Starter\Model\ModelInterface\ReadInterface;
-use NYPL\Starter\Model\ModelTrait\CreateTrait;
 use NYPL\Starter\Model\ModelTrait\SierraTrait\SierraReadTrait;
 
 /**
  * @SWG\Definition(title="Patron", type="object", required={"id"})
  */
-class Patron extends BasePatron implements ReadInterface, MessageInterface
+class Patron extends BasePatron implements ReadInterface
 {
     const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,patronCodes,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
 
-    use SierraReadTrait, CreateTrait;
+    use SierraReadTrait;
 
     /**
      * @param string|null $id
@@ -106,10 +104,5 @@ class Patron extends BasePatron implements ReadInterface, MessageInterface
                     ]],
                 ]
             ];
-    }
-
-    public function create($useId = false)
-    {
-        $this->publishMessage($this->getObjectName(), $this->createMessage());
     }
 }
