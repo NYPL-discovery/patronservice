@@ -1,7 +1,7 @@
 # NYPL Patron Service
 
-[![Build Status](https://travis-ci.org/NYPL/patronservice.svg?branch=master)](https://travis-ci.org/NYPL-discovery/patronservice)
-[![Coverage Status](https://coveralls.io/repos/github/NYPL-discovery/patronservice/badge.svg?branch=travis)](https://coveralls.io/github/NYPL-discovery/patronservice?branch=travis)
+[![Build Status](https://travis-ci.org/NYPL-discovery/patron-service.svg?branch=master)](https://travis-ci.org/NYPL-discovery/patron-service)
+[![Coverage Status](https://coveralls.io/repos/github/NYPL-discovery/patron-service/badge.svg?branch=master)](https://coveralls.io/github/NYPL-discovery/patron-service?branch=master)
 
 This package is intended to be used as a Lambda-based Node.js/PHP Patron Service using the 
 [NYPL PHP Microservice Starter](https://github.com/NYPL/php-microservice-starter).
