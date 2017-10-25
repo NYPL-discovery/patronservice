@@ -23,7 +23,7 @@
     },
     "stage": "prod"
   },
-  "queryStringParameters": {
+  "queryStringParameters": { "email": "digitallionprojectteam@nypl.org"
   },
   "headers": {
     "Via": "1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)",
@@ -49,5 +49,5 @@
   "stageVariables": {
     "environment": "qa"
   },
-  "path": "/api/v0.1/patrons/63636702867028"
+  "path": "/api/v0.1/patrons"
 }

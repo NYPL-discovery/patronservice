@@ -2,7 +2,7 @@
   "name": "nypl-services",
   "description": "NYPL Services Package",
   "require": {
-    "nypl/microservice-starter": "~1.0",
+    "nypl/microservice-starter": "^1.0.0",
     "egulias/email-validator": "2.1.2"
   },
   "require-dev": {

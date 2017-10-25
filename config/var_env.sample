@@ -1,13 +1,9 @@
-SIERRA_OAUTH_TOKEN_URI="https://nypl-sierra-test.iii.com/iii/sierra-api/v3/token"
-SIERRA_BASE_API_URL="https://nypl-sierra-test.iii.com/iii/sierra-api/v3"
-
-CACHE_HOST="service-job.rtovuw.0001.use1.cache.amazonaws.com"
-CACHE_PORT="6379"
+SIERRA_OAUTH_TOKEN_URI="https://need-sierra-nypl-connection.com/iii/sierra-api/v3/token"
+SIERRA_BASE_API_URL="https://need-sierra-nypl-connection.com/iii/sierra-api/v3"
 
 # ***************************************************
 # The parameters below should be encrypted using KMS
 # ***************************************************
 
-SLACK_TOKEN=
 SIERRA_OAUTH_CLIENT_ID=
 SIERRA_OAUTH_CLIENT_SECRET=
