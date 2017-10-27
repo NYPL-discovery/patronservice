@@ -6,7 +6,7 @@ use NYPL\Starter\ModelSet;
 
 class PatronSet extends ModelSet
 {
-    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,patronCodes,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
+    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
 
     use SierraReadTrait;
 
@@ -27,11 +27,9 @@ class PatronSet extends ModelSet
     }
 
     /**
-     * @param string|null $id
-     *
      * @return string
      */
-    public function getSierraPath($id = null)
+    public function getSierraPath()
     {
         $query = ["fields" => self::FIELDS];
 

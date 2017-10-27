@@ -2,6 +2,7 @@
 namespace NYPL\Services\Model\DataModel;
 
 use NYPL\Services\Model\DataModel;
+use NYPL\Starter\Model;
 use NYPL\Starter\Model\LocalDateTime;
 use NYPL\Starter\Model\ModelTrait\TranslateTrait;
 
@@ -80,6 +81,12 @@ abstract class BasePatron extends DataModel
      * @var string[]
      */
     public $emails;
+
+    /**
+     * @SWG\Property()
+     * @var integer
+     */
+    public $patronType;
 
     /**
      * @SWG\Property()
@@ -312,6 +319,22 @@ abstract class BasePatron extends DataModel
     }
 
     /**
+     * @return int
+     */
+    public function getPatronType()
+    {
+        return $this->patronType;
+    }
+
+    /**
+     * @param int $patronType
+     */
+    public function setPatronType($patronType)
+    {
+        $this->patronType = $patronType;
+    }
+
+    /**
      * @return \string[]
      */
     public function getEmails()
@@ -366,7 +389,7 @@ abstract class BasePatron extends DataModel
     /**
      * @param array|string $data
      *
-     * @return FixedField[]
+     * @return Model[]
      */
     public function translateFixedFields($data)
     {
@@ -392,7 +415,7 @@ abstract class BasePatron extends DataModel
     /**
      * @param array|string $data
      *
-     * @return VarField[]
+     * @return Model[]
      */
     public function translateVarFields($data)
     {

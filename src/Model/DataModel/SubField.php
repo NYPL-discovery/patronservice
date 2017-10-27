@@ -2,13 +2,14 @@
 namespace NYPL\Services\Model\DataModel;
 
 use NYPL\Starter\Model;
+use NYPL\Starter\Model\ModelTrait\TranslateTrait;
 
 /**
  * @SWG\Definition(type="object", required={"tag"})
  */
 class SubField extends Model
 {
-    use Model\ModelTrait\TranslateTrait;
+    use TranslateTrait;
 
     /**
      * @SWG\Property(example="a")

@@ -1,0 +1,224 @@
+{
+  "total": 1,
+  "entries": [
+    {
+      "id": 6779366,
+      "updatedDate": "2017-10-17T12:07:44Z",
+      "createdDate": "2016-12-13T19:49:54Z",
+      "deleted": false,
+      "suppressed": false,
+      "names": [
+        "GARFUNKEL, ART"
+      ],
+      "barcodes": [
+        "234567890987654"
+      ],
+      "expirationDate": "2021-12-31",
+      "emails": [
+        "digitallionprojectteam@nypl.org"
+      ],
+      "patronType": 82,
+      "homeLibraryCode": "mm",
+      "fixedFields": {
+        "43": {
+          "label": "Expiration Date",
+          "value": "2021-12-31T09:00:00Z"
+        },
+        "44": {
+          "label": "E-Communications",
+          "value": "s"
+        },
+        "45": {
+          "label": "Education Level",
+          "value": "p"
+        },
+        "46": {
+          "label": "Home Region",
+          "value": "12"
+        },
+        "47": {
+          "label": "Patron Type",
+          "value": "82"
+        },
+        "48": {
+          "label": "Total Checkouts",
+          "value": 247
+        },
+        "49": {
+          "label": "Total Renewals",
+          "value": 3
+        },
+        "50": {
+          "label": "Current Checkouts",
+          "value": 13
+        },
+        "53": {
+          "label": "Home Library",
+          "value": "mm   "
+        },
+        "54": {
+          "label": "Patron Message",
+          "value": "-"
+        },
+        "55": {
+          "label": "Highest Overdues",
+          "value": 0
+        },
+        "56": {
+          "label": "Manual Block",
+          "value": "-"
+        },
+        "80": {
+          "label": "Record Type",
+          "value": "p"
+        },
+        "81": {
+          "label": "Record Number",
+          "value": "6779366"
+        },
+        "83": {
+          "label": "Created Date",
+          "value": "2016-12-13T19:49:54Z"
+        },
+        "84": {
+          "label": "Updated Date",
+          "value": "2017-10-17T12:07:44Z"
+        },
+        "85": {
+          "label": "No. of Revisions",
+          "value": "1000"
+        },
+        "86": {
+          "label": "Agency",
+          "value": "1"
+        },
+        "95": {
+          "label": "Claims Returned",
+          "value": 0
+        },
+        "96": {
+          "label": "Money Owed",
+          "value": 0
+        },
+        "98": {
+          "label": "PDATE",
+          "value": "2017-10-17T11:53:39Z"
+        },
+        "99": {
+          "label": "FIRM",
+          "value": "     "
+        },
+        "102": {
+          "label": "Current Item A",
+          "value": 0
+        },
+        "103": {
+          "label": "Current Item B",
+          "value": 0
+        },
+        "104": {
+          "label": "PIUSE",
+          "value": 0
+        },
+        "105": {
+          "label": "Overdue Penalty",
+          "value": 0
+        },
+        "122": {
+          "label": "ILL Request",
+          "value": 0
+        },
+        "123": {
+          "label": "Debit Balance",
+          "value": 0
+        },
+        "124": {
+          "label": "Current Item C",
+          "value": 0
+        },
+        "125": {
+          "label": "Current Item D",
+          "value": 12
+        },
+        "126": {
+          "label": "School Code",
+          "value": "0"
+        },
+        "158": {
+          "label": "Patron Agency",
+          "value": "33"
+        },
+        "163": {
+          "label": "Last Circ Activity",
+          "value": "2017-10-17T12:07:44Z"
+        },
+        "263": {
+          "label": "Preferred Language",
+          "value": "eng"
+        },
+        "268": {
+          "label": "Notice Preference",
+          "value": "z"
+        },
+        "269": {
+          "label": "Registrations on Record",
+          "value": 0
+        },
+        "270": {
+          "label": "Total Registrations",
+          "value": 0
+        },
+        "271": {
+          "label": "Total Programs Attended",
+          "value": 0
+        },
+        "297": {
+          "label": "Waitlists on Record",
+          "value": 0
+        }
+      },
+      "varFields": [
+        {
+          "fieldTag": "=",
+          "content": "YxIUnYbM3xXOc"
+        },
+        {
+          "fieldTag": "b",
+          "content": "234567890987654"
+        },
+        {
+          "fieldTag": "m",
+          "content": "the first message field displays in the patron's account..."
+        },
+        {
+          "fieldTag": "m",
+          "content": "...but his second message displays only in Sierra..."
+        },
+        {
+          "fieldTag": "m",
+          "content": "...and this third one displays only in Sierra"
+        },
+        {
+          "fieldTag": "u",
+          "content": "nypltest3"
+        },
+        {
+          "fieldTag": "z",
+          "content": "digitallionprojectteam@nypl.org"
+        },
+        {
+          "fieldTag": "a",
+          "content": "100 1st St.$Beverly Hills, CA 90210"
+        },
+        {
+          "fieldTag": "n",
+          "content": "GARFUNKEL, ART"
+        },
+        {
+          "fieldTag": "t",
+          "content": "212-555-0009"
+        }
+      ]
+    }
+  ]
+}

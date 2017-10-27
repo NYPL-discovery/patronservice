@@ -9,7 +9,7 @@ use NYPL\Starter\Filter;
 use NYPL\Services\Model\DataModel\BasePatron\Patron;
 use NYPL\Services\Model\Response\SuccessResponse\PatronResponse;
 
-final class PatronController extends Controller
+class PatronController extends Controller
 {
     /**
      * @SWG\Get(
@@ -33,13 +33,6 @@ final class PatronController extends Controller
      *         type="string",
      *         format="string"
      *     ),
-     *     @SWG\Parameter(
-     *         in="query",
-     *         name="email",
-     *         required=false,
-     *         type="string",
-     *         format="string"
-     *     ),
      *     @SWG\Response(
      *         response=200,
      *         description="Successful operation",
@@ -57,28 +50,13 @@ final class PatronController extends Controller
      *     ),
      *     security={
      *         {
-     *             "api_auth": {"openid offline_access api"}
+     *             "api_auth": {"openid offline_access api read:patron readwrite:patron"}
      *         }
      *     }
      * )
      */
     public function getPatrons()
     {
-        if ($email = $this->getRequest()->getQueryParam('email')) {
-            $patronQuery = new PatronEmailQuery();
-            $patronQuery->setEmail($email);
-            $patronQuery->read();
-
-            return $this->getDefaultReadResponse(
-                new PatronSet(new Patron(), true),
-                new PatronsResponse(),
-                new Filter\QueryFilter(
-                    'id',
-                    implode(',', $patronQuery->getIds())
-                )
-            );
-        }
-
         return $this->getDefaultReadResponse(
             new PatronSet(new Patron(), true),
             new PatronsResponse(),
@@ -120,7 +98,7 @@ final class PatronController extends Controller
      *     ),
      *     security={
      *         {
-     *             "api_auth": {"openid offline_access api"}
+     *             "api_auth": {"openid offline_access api read:patron readwrite:patron"}
      *         }
      *     }
      * )
