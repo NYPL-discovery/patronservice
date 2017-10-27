@@ -58,7 +58,7 @@ class PatronTest extends TestCase
      */
     public function testIfPatronObjectContainsAllDefinedFields()
     {
-        $data = file_get_contents(__DIR__ . '/../../../Stubs/sample_patron_sierra.json');
+        $data = json_decode(file_get_contents(__DIR__ . '/../../../Stubs/sample_patron_sierra.json'), true);
         $patron = new Patron($data);
         $fields = explode(',', self::FIELDS);
         foreach ($fields as $field) {
