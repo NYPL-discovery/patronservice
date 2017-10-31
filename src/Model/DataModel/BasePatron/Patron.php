@@ -33,16 +33,17 @@ class Patron extends BasePatron implements ReadInterface
         return "patrons/{$this->getSierraId($id)}?" . http_build_query(["fields" => self::FIELDS]);
     }
 
-    public function getCardCreatorPath()
-    {
-        return 'create_patron';
-    }
-
+    /**
+     * @return array
+     */
     public function getIdFields()
     {
         return ["id"];
     }
 
+    /**
+     * @return array
+     */
     public function getSchema()
     {
         return

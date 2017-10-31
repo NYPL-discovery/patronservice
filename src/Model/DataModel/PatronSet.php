@@ -27,11 +27,9 @@ class PatronSet extends ModelSet
     }
 
     /**
-     * @param string|null $id
-     *
      * @return string
      */
-    public function getSierraPath($id = null)
+    public function getSierraPath()
     {
         $query = ["fields" => self::FIELDS];
 

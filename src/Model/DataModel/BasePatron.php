@@ -2,6 +2,7 @@
 namespace NYPL\Services\Model\DataModel;
 
 use NYPL\Services\Model\DataModel;
+use NYPL\Starter\Model;
 use NYPL\Starter\Model\LocalDateTime;
 use NYPL\Starter\Model\ModelTrait\TranslateTrait;
 
@@ -366,7 +367,7 @@ abstract class BasePatron extends DataModel
     /**
      * @param array|string $data
      *
-     * @return FixedField[]
+     * @return Model[]
      */
     public function translateFixedFields($data)
     {
@@ -392,7 +393,7 @@ abstract class BasePatron extends DataModel
     /**
      * @param array|string $data
      *
-     * @return VarField[]
+     * @return Model[]
      */
     public function translateVarFields($data)
     {
