@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 class PatronTest extends TestCase
 {
     // Barcodes field altered here slightly to match object and Avro schema definition.
-    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barCodes,expirationDate,birthDate,emails,patronType,homeLibraryCode,fixedFields,varFields";
+    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,patronCodes,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
 
     public $patron;
     public $schema;
@@ -40,7 +40,6 @@ class PatronTest extends TestCase
      * @covers NYPL\Services\Model\DataModel\BasePatron::setBarCodes()
      * @covers NYPL\Services\Model\DataModel\BasePatron::setExpirationDate()
      * @covers NYPL\Services\Model\DataModel\BasePatron::setHomeLibraryCode()
-     * @covers NYPL\Services\Model\DataModel\BasePatron::setPatronType()
      * @covers NYPL\Services\Model\DataModel\BasePatron::setBirthDate()
      * @covers NYPL\Services\Model\DataModel\BasePatron::setFixedFields()
      * @covers NYPL\Services\Model\DataModel\BasePatron::setVarFields()
@@ -58,11 +57,18 @@ class PatronTest extends TestCase
      */
     public function testIfPatronObjectContainsAllDefinedFields()
     {
+        $extraFields = ['patronType','patronCodes','message','blockInfo','addresses','phones','moneyOwed'];
         $data = json_decode(file_get_contents(__DIR__ . '/../../../Stubs/sample_patron_sierra.json'), true);
         $patron = new Patron($data);
         $fields = explode(',', self::FIELDS);
         foreach ($fields as $field) {
-            self::assertClassHasAttribute($field, get_class($patron));
+            if (!in_array($field, $extraFields)) {
+                // Reset barcodes to barCodes as per model definition.
+                if ($field == 'barcodes') {
+                    $field = 'barCodes';
+                }
+                self::assertClassHasAttribute($field, get_class($patron));
+            }
         }
     }
 }

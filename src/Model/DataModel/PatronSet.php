@@ -6,7 +6,7 @@ use NYPL\Starter\ModelSet;
 
 class PatronSet extends ModelSet
 {
-    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
+    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,patronCodes,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
 
     use SierraReadTrait;
 

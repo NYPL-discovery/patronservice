@@ -84,12 +84,6 @@ abstract class BasePatron extends DataModel
 
     /**
      * @SWG\Property()
-     * @var integer
-     */
-    public $patronType;
-
-    /**
-     * @SWG\Property()
      * @var FixedField[]
      */
     public $fixedFields;
@@ -316,22 +310,6 @@ abstract class BasePatron extends DataModel
     public function translateBirthDate($birthDate = '')
     {
         return new LocalDateTime(LocalDateTime::FORMAT_DATE, $birthDate);
-    }
-
-    /**
-     * @return int
-     */
-    public function getPatronType()
-    {
-        return $this->patronType;
-    }
-
-    /**
-     * @param int $patronType
-     */
-    public function setPatronType($patronType)
-    {
-        $this->patronType = $patronType;
     }
 
     /**

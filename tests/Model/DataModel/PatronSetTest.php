@@ -1,5 +1,5 @@
 <?php
-namespace NYPL\Services\Test\Model;
+namespace NYPL\Services\Test\Model\DataModel;
 
 use NYPL\Services\Model\DataModel\BasePatron\Patron;
 use NYPL\Services\Model\DataModel\PatronSet;
@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class PatronSetTest extends TestCase
 {
-    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
+    const FIELDS = "id,updatedDate,createdDate,deletedDate,deleted,suppressed,names,barcodes,expirationDate,birthDate,emails,patronType,patronCodes,homeLibraryCode,message,blockInfo,addresses,phones,moneyOwed,fixedFields,varFields";
 
     public $patronSet;
 
