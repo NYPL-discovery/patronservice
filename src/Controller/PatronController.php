@@ -72,6 +72,7 @@ final class PatronController extends Controller
      *         }
      *     }
      * )
+     * @throws APIException
      */
     public function getPatrons()
     {
