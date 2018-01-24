@@ -31,6 +31,11 @@ try {
         return $controller->getPatron($parameters["id"]);
     });
 
+    $service->post("/api/v0.1/patrons/validate", function (Request $request, Response $response) {
+        $controller = new Controller\PatronController($request, $response);
+        return $controller->validatePatron();
+    });
+
     $service->run();
 } catch (Exception $exception) {
     ErrorHandler::processShutdownError($exception->getMessage(), $exception);

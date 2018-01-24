@@ -4,13 +4,17 @@
   "description": "Lambda for the NYPL Patron Service",
   "main": "index.js",
   "scripts": {
-    "deploy-development": "node-lambda deploy -e development -f config/var_development.env -S config/event_sources_dev.json -o arn:aws:iam::<aws generated id>:role/<lambda role> -b subnet-id-on-aws -g sg-security-group-on-aws -P <aws-profile-name>",
-    "deploy-qa": "node-lambda deploy -e qa -f config/var_qa.env -S config/event_sources_qa.json -o 'arn:aws:iam::<aws generated id>:role/<lambda role>' -b subnet-id-on-aws,subnet-id-on-aws -g sg-security-group-on-aws -P <aws-profile-name>",
-    "deploy-production": "node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -o 'arn:aws:iam::<aws generated id>:role/<lambda role>' -P <aws-profile-name>",
-    "test-patron": "node-lambda run -f config/var_app -j tests/events/patron.json -x tests/events/context.json"
+    "deploy-development": "node-lambda deploy -e development -f config/var_development.env -S config/event_sources_development.json -o arn:aws:iam::224280085904:role/lambda_basic_execution -b subnet-f4fe56af -g sg-1d544067 -P nypl-sandbox",
+    "deploy-qa": "node-lambda deploy -e qa -f config/var_qa.env -S config/event_sources_qa.json -o 'arn:aws:iam::946183545209:role/lambda-full-access' -b subnet-f35de0a9,subnet-21a3b244 -g sg-aa74f1db -P nypl-digital-dev",
+    "deploy-production": "node-lambda deploy -e production -f config/var_production.env -S config/event_sources_production.json -o 'arn:aws:iam::946183545209:role/lambda-full-access' -P nypl-digital-dev",
+    "test-patron": "node-lambda run -j tests/events/patron.json -x tests/events/context.json"
   },
-  "repository": {},
-  "keywords": [],
-  "dependencies": {},
-  "devDependencies": {}
+  "repository": {
+  },
+  "keywords": [
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
 }
