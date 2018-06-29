@@ -13,7 +13,7 @@ use NYPL\Starter\Filter;
 use NYPL\Services\Model\DataModel\BasePatron\Patron;
 use NYPL\Services\Model\Response\SuccessResponse\PatronResponse;
 
-final class PatronController extends Controller
+class PatronController extends Controller
 {
     /**
      * @SWG\Get(
