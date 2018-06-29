@@ -1,9 +1,0 @@
-SIERRA_OAUTH_TOKEN_URI="https://need-sierra-nypl-connection.com/iii/sierra-api/v3/token"
-SIERRA_BASE_API_URL="https://need-sierra-nypl-connection.com/iii/sierra-api/v3"
-
-# ***************************************************
-# The parameters below should be encrypted using KMS
-# ***************************************************
-
-SIERRA_OAUTH_CLIENT_ID=
-SIERRA_OAUTH_CLIENT_SECRET=

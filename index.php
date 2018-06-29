@@ -10,13 +10,13 @@ use NYPL\Starter\Config;
 use NYPL\Starter\ErrorHandler;
 
 try {
-    Config::initialize(__DIR__);
+    Config::initialize(__DIR__ . '/config');
 
     $service = new Service();
 
     $service->get("/docs/patron", function (Request $request, Response $response) {
         return SwaggerGenerator::generate(
-            [__DIR__ . "/src"],
+            [__DIR__ . "/src", __DIR__ . "/vendor/nypl/microservice-starter/src"],
             $response
         );
     });
