@@ -2,6 +2,7 @@
 namespace NYPL\Services\Model\DataModel;
 
 use NYPL\Services\Model\DataModel;
+use NYPL\Starter\APILogger;
 use NYPL\Starter\Model;
 use NYPL\Starter\Model\LocalDateTime;
 use NYPL\Starter\Model\ModelTrait\TranslateTrait;
@@ -365,12 +366,30 @@ abstract class BasePatron extends DataModel
     }
 
     /**
+     * @param array $fixedFields
+     *
+     * @return array
+     */
+    protected function fixFixedFields(array $fixedFields = [])
+    {
+        if (array_key_exists('96', $fixedFields)) {
+            $fixedFields['96']['value'] = (int) $fixedFields['96']['value'];
+        }
+
+        return $fixedFields;
+    }
+
+    /**
      * @param array|string $data
      *
      * @return Model[]
      */
     public function translateFixedFields($data)
     {
+        if (is_array($data)) {
+            $data = $this->fixFixedFields($data);
+        }
+
         return $this->translateArray($data, new FixedField(), true);
     }
 
