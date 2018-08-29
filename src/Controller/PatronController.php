@@ -62,6 +62,11 @@ class PatronController extends Controller
      *         @SWG\Schema(ref="#/definitions/ErrorResponse")
      *     ),
      *     @SWG\Response(
+     *         response="409",
+     *         description="Duplicate patrons found for query",
+     *         @SWG\Schema(ref="#/definitions/ErrorResponse")
+     *     ),
+     *     @SWG\Response(
      *         response="500",
      *         description="Generic server error",
      *         @SWG\Schema(ref="#/definitions/ErrorResponse")
@@ -76,41 +81,11 @@ class PatronController extends Controller
      */
     public function getPatrons()
     {
-        if ($email = $this->getRequest()->getQueryParam('email')) {
-            $patronQuery = new PatronEmailQuery();
-            $patronQuery->setEmail($email);
-            $patronQuery->read();
-
-            return $this->getDefaultReadResponse(
-                new PatronSet(new Patron(), true),
-                new PatronsResponse(),
-                new Filter\QueryFilter(
-                    'id',
-                    implode(',', $patronQuery->getIds())
-                )
-            );
-        }
-
-        if ($username = $this->getRequest()->getQueryParam('username')) {
-            $patronQuery = new PatronUsernameQuery();
-            $patronQuery->setUsername($username);
-            $patronQuery->read();
-
-            return $this->getDefaultReadResponse(
-                new PatronSet(new Patron(), true),
-                new PatronsResponse(),
-                new Filter\QueryFilter(
-                    'id',
-                    implode(',', $patronQuery->getIds())
-                )
-            );
-        }
-
         return $this->getDefaultReadResponse(
             new PatronSet(new Patron(), true),
             new PatronsResponse(),
             null,
-            ['id', 'barcode']
+            ['id', 'barcode', 'email', 'username']
         );
     }
 

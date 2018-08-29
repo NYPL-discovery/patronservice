@@ -1,6 +1,8 @@
 <?php
 namespace NYPL\Services\Model\DataModel;
 
+use NYPL\Starter\APILogger;
+use NYPL\Starter\Filter;
 use NYPL\Starter\Model\ModelTrait\SierraTrait\SierraReadTrait;
 use NYPL\Starter\ModelSet;
 
@@ -20,6 +22,12 @@ class PatronSet extends ModelSet
                 if ($filter->getFilterColumn() === 'barcode') {
                     return 'patrons/find';
                 }
+                if ($filter->getFilterColumn() === 'username') {
+                    return 'patrons/find';
+                }
+                if ($filter->getFilterColumn() === 'email') {
+                    return 'patrons/find';
+                }
             }
         }
 
@@ -27,15 +35,47 @@ class PatronSet extends ModelSet
     }
 
     /**
+     * @param Filter $filter
+     *
+     * @return array
+     */
+    protected function getQueryParamter(Filter $filter) {
+        if ($filter->getFilterColumn() === 'email') {
+            return [
+                'varFieldTag' => 'z',
+                'varFieldContent' => $filter->getFilterValue()
+            ];
+        }
+
+        if ($filter->getFilterColumn() === 'username') {
+            return [
+                'varFieldTag' => 'u',
+                'varFieldContent' => $filter->getFilterValue()
+            ];
+        }
+
+        if ($filter->getFilterColumn() === 'barcode') {
+            return [
+                'varFieldTag' => 'b',
+                'varFieldContent' => $filter->getFilterValue()
+            ];
+        }
+
+        return [
+            $filter->getFilterColumn() => $filter->getFilterValue()
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getSierraPath()
     {
-        $query = ["fields" => self::FIELDS];
+        $query = ['fields' => self::FIELDS];
 
         if ($this->getFilters()) {
             foreach ($this->getFilters() as $filter) {
-                $query[$filter->getFilterColumn()] = $filter->getFilterValue();
+                $query = array_merge($query, $this->getQueryParamter($filter));
             }
         }
 
@@ -44,6 +84,6 @@ class PatronSet extends ModelSet
 
     public function getIdFields()
     {
-        return ["id"];
+        return ['id'];
     }
 }
