@@ -1,6 +1,7 @@
 <?php
 namespace NYPL\Services\Model\DataModel\Query;
 
+use NYPL\Services\Model\DataModel\BasePatron\Patron;
 use NYPL\Services\Model\DataModel\Query;
 
 class PatronEmailQuery extends Query
@@ -33,22 +34,7 @@ class PatronEmailQuery extends Query
      */
     public function getBody()
     {
-        return json_encode([
-            'target' => [
-                'record' => [
-                    'type' => 'patron'
-                ],
-                'field' => [
-                    'tag' => 'z'
-                ]
-            ],
-            'expr' => [
-                'op' => 'equals',
-                'operands' => [
-                    $this->getEmail()
-                ]
-            ]
-        ]);
+        return '';
     }
 
     /**
@@ -59,10 +45,13 @@ class PatronEmailQuery extends Query
     public function getSierraPath($id = '')
     {
         $query = [
+            'varFieldTag' => 'z',
+            'varFieldContent' => $this->getEmail(),
             'offset' => 0,
-            'limit' => self::DEFAULT_LIMIT
+            'limit' => self::DEFAULT_LIMIT,
+            'fields' => Patron::FIELDS
         ];
 
-        return 'patrons/query?' . http_build_query($query);
+        return 'patrons/find?' . http_build_query($query);
     }
 }
