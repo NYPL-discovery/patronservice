@@ -376,6 +376,10 @@ abstract class BasePatron extends DataModel
             $fixedFields['96']['value'] = (int) $fixedFields['96']['value'];
         }
 
+        if (array_key_exists('123', $fixedFields)) {
+            $fixedFields['123']['value'] = (int) $fixedFields['123']['value'];
+        }
+
         return $fixedFields;
     }
 
