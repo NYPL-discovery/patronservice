@@ -14,25 +14,18 @@ script:
 - composer update
 - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 after_success:
+- ENVIRONMENT_NAME=$TRAVIS_BRANCH
+- if [ "$TRAVIS_BRANCH" == "master" ]; then ENVIRONMENT_NAME=production; fi
 - vendor/bin/coveralls -v
 - vendor/bin/phpcs -n --standard=PSR1,PSR2 src/
 - vendor/bin/phpcbf src/
 deploy:
 - provider: script
   skip_cleanup: true
-  script: npm run deploy-development
+  script: "./scripts/travis-deploy.sh $ENVIRONMENT_NAME"
   on:
-    branch: development
-- provider: script
-  skip_cleanup: true
-  script: npm run deploy-qa
-  on:
-    branch: qa
-- provider: script
-  skip_cleanup: true
-  script: npm run deploy-production
-  on:
-    branch: master
+    all_branches: true
+    condition: "$TRAVIS_BRANCH =~ ^(development|qa|production)$"
 env:
   global:
   - secure: ia1Qe17GZXyWOUemr4OkPZvuOEVNDRUlJ4VOM80c0DveNgTwZ4gvv7NaahksHeHSSxYrDCrJUEdZIk+9WW+wl6I8whN018uK6+/PUpZyv5e3ZDRb4rabkG9olZiEHQfjuOOYFjLMUfkJRjOESQNlZg8ngLMz6W4UFnvDbHKK6usuoNntAkaAXtwhuJPsQFt3Fff9MtjtcqL3KM5vtoV4AktHZPJZ1KEbhBE+UwXtWPSmsVgf5qVnnfsMEGqnSPzXP4TsDr77sSTYQ7dbL/C8VsqKI6wmrwJ9vsJ5ev9yqeKtu/L1pBgmGRGj22HNwINXj8WG3ri937A0VDAit6qNjO5RaAIhPvlxOmFWTMi/+fSxhqTLaELjJl0qfR0RJN+cgpH5jP9/yWf6jEPipWMxkGeexomANtTBP7wGgbuPo7xICG45nJQ8DTatV3me+PA93PWYjSwLw57SsqggLbTFOPnZ1kLNLQZwWNubcxEvBml8HbfABYhuf84gBr/6xdwBXg1lrQl0WAAiNzDKhTf6G7HaVADEFUvke82CPq8R0SK8EII3K/zmV1NaQpLVYKnYBlreLinKZKaNw8iJdkCEWVDTS3cY36UM2pg2c813VUWiRsgAoveQmCwTPTfALekNQ20NEiZcO8pbTdFQHaofTIjNeWVZ1JvWQGiNMqYa4oQ=
