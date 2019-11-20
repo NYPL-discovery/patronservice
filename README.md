@@ -10,6 +10,14 @@ This package adheres to [PSR-1](http://www.php-fig.org/psr/psr-1/),
 [PSR-2](http://www.php-fig.org/psr/psr-2/), and [PSR-4](http://www.php-fig.org/psr/psr-4/) 
 (using the [Composer](https://getcomposer.org/) autoloader).
 
+This app handles the following endpoints:
+ - `GET /api/v0.1/patrons`
+ - `GET /api/v0.1/patrons/{id}`
+ - `POST /api/v0.1/patrons/validate`
+ - `GET /docs/patron`
+
+See also [Patron Creator Service](https://github.com/NYPL/dgx-patron-creator-service), [PatronEligibilityService](https://github.com/NYPL-discovery/patron-eligibility-service), [BarcodeService](https://github.com/NYPL/barcode-service) for other patron endpoints.
+
 ## Requirements
 
 * Node.js >=6.0
