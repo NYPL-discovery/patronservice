@@ -59,12 +59,19 @@ exports.handler = function(event, context, callback) {
         env: Object.assign(process.env, headers)
     };
 
+    console.log('LAMBDA_TASK_ROOT: ', process.env.LAMBDA_TASK_ROOT);
     if (process.env.LAMBDA_TASK_ROOT) {
-        var php = spawn(
+        console.log('attempting to spawn php');
+        try {
+          var php = spawn(
             process.env.LAMBDA_TASK_ROOT + '/php-cgi',
             ['-n', '-d expose_php=Off', '-d memory_limit=512M', '-d opcache.file_cache=/tmp', '-d zend_extension=' + process.env.LAMBDA_TASK_ROOT + '/lib/opcache.so', 'index.php'],
             options
-        );
+          );
+        }
+        catch (e) {
+          console.log('php error: ', e);
+        }
     } else {
         var php = spawn('php-cgi', ['-d expose_php=Off', '-d memory_limit=512M', 'index.php'], options);
     }
