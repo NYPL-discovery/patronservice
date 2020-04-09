@@ -73,6 +73,7 @@ exports.handler = function(event, context, callback) {
           console.log('php error: ', e);
         }
     } else {
+        console.log('options: ', options);
         var php = spawn('php-cgi', ['-d expose_php=Off', '-d memory_limit=512M', 'index.php'], options);
     }
 
