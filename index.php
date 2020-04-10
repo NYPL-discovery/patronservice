@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-set_include_path('/lib64');
+set_include_path('/opt/lib64');
 
 use Slim\Http\Request;
 use Slim\Http\Response;
