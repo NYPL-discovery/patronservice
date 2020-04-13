@@ -11,7 +11,7 @@ cache:
 install:
 - npm install
 script:
-- composer install
+- composer update
 - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 after_success:
 - ENVIRONMENT_NAME=$TRAVIS_BRANCH
