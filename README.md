@@ -1,4 +1,6 @@
-# NYPL Patron Service
+# NYPL Patron Service (DEPRECATED)
+
+Note: This repo has been deprecated. See [PatronService V2](https://github.com/NYPL/patron-service-v2/)
 
 [![Build Status](https://travis-ci.org/NYPL-discovery/patron-service.svg?branch=master)](https://travis-ci.org/NYPL-discovery/patron-service)
 [![Coverage Status](https://coveralls.io/repos/github/NYPL-discovery/patron-service/badge.svg?branch=master)](https://coveralls.io/github/NYPL-discovery/patron-service?branch=master)
